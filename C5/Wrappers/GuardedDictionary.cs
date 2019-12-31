@@ -49,7 +49,7 @@ namespace C5
         /// (This is a read-only wrapper)
         /// </summary>
         /// <value>True</value>
-        public bool IsReadOnly => true;
+        public override bool IsReadOnly => true;
 
 
         //TODO: guard with a read-only wrapper? Probably so!
@@ -107,7 +107,7 @@ namespace C5
         /// <summary>
         /// </summary>
         /// <exception cref="ReadOnlyCollectionException"> since this is a read-only wrapper</exception>
-        public void Clear()
+        public override void Clear()
         { throw new ReadOnlyCollectionException(); }
 
         /// <summary>

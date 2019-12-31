@@ -56,9 +56,9 @@ namespace C5
             Node n = start!;
             while (n != null)
             {
-                //V view = n.weakview.Target as V; //This provokes a bug in the beta1 verifyer
-                object o = n.weakview.Target;
-                V? view = o is V ? (V)o : null;
+                V view = n.weakview.Target as V; //This provokes a bug in the beta1 verifyer
+                //object o = n.weakview.Target;
+                //V? view = o is V ? (V)o : null;
                 if (view == null)
                 {
                     Remove(n);

@@ -1,4 +1,5 @@
 using System;
+using SCG = System.Collections.Generic;
 
 namespace C5
 {
@@ -47,13 +48,17 @@ namespace C5
         /// <returns>True if obj is an entry of the same type and has the same key and value</returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is KeyValuePair<K, V>))
+            if (obj is KeyValuePair<K, V>)
             {
-                return false;
+                KeyValuePair<K, V> other = (KeyValuePair<K, V>)obj;
+                return Equals(other);
             }
-
-            KeyValuePair<K, V> other = (KeyValuePair<K, V>)obj;
-            return Equals(other);
+            else if (obj is SCG.KeyValuePair<K, V>)
+            {
+                SCG.KeyValuePair<K, V> other = (SCG.KeyValuePair<K, V>)obj;
+                return Equals(other);
+            }
+            return false;
         }
 
         /// <summary>
@@ -68,6 +73,16 @@ namespace C5
         /// <param name="other"></param>
         /// <returns></returns>
         public bool Equals(KeyValuePair<K, V> other)
+        {
+            return EqualityComparer<K>.Default.Equals(Key, other.Key) && EqualityComparer<V>.Default.Equals(Value, other.Value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(SCG.KeyValuePair<K, V> other)
         {
             return EqualityComparer<K>.Default.Equals(Key, other.Key) && EqualityComparer<V>.Default.Equals(Value, other.Value);
         }

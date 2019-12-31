@@ -304,7 +304,7 @@ namespace C5.Tests.hashtable.dictionary
         [Test]
         public void NormalUse()
         {
-            var pairs = _dict.ToDictionary(pair => pair.Key, pair => pair.Value);
+            var pairs = ((SCG.IEnumerable<KeyValuePair<string, string>>)_dict).ToDictionary(pair => pair.Key, pair => pair.Value);
 
             Assert.AreEqual(3, pairs.Count);
             Assert.IsTrue(pairs.Contains(new SCG.KeyValuePair<string, string>("R", "C")));
